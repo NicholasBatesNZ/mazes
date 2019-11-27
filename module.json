@@ -1,0 +1,11 @@
+{
+    "id" : "mazes",
+    "version" : "0.1.0",
+    "displayName" : "mazes Faction",
+    "description" : "Content related to mazes Faction.",
+    "dependencies" :  [
+        {
+            "id" : "core"
+        }
+    ]
+}
