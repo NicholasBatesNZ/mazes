@@ -24,12 +24,11 @@ import org.destinationsol.game.ConfigurationSystem;
 import org.destinationsol.game.ShipConfig;
 import org.destinationsol.game.SolCam;
 import org.destinationsol.game.SolGame;
-import org.destinationsol.game.UpdateAwareSystem;
 import org.destinationsol.game.chunk.SpaceEnvConfig;
 
 import java.util.List;
 
-public class Maze implements UpdateAwareSystem, BuildableSystem {
+public class Maze implements BuildableSystem {
     private MazeConfigs configs;
     private MazeConfig config;
     private Vector2 position;
