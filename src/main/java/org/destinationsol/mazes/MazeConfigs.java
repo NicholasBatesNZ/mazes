@@ -36,7 +36,7 @@ public class MazeConfigs implements ConfigurationSystem {
         configs = new ArrayList<>();
         final Set<ResourceUrn> configUrns = Assets.getAssetHelper().list(Json.class, "[a-zA-Z0-9]*:mazesConfig");
         for (ResourceUrn configUrn : configUrns) {
-            JSONObject rootNode = Validator.getValidatedJSON(configUrn.toString(), "engine:schemaMazesConfig");
+            JSONObject rootNode = Validator.getValidatedJSON(configUrn.toString(), "mazes:schemaMazesConfig");
             for (String name : rootNode.keySet()) {
                 if (!(rootNode.get(name) instanceof JSONObject))
                     continue;

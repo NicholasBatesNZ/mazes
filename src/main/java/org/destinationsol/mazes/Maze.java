@@ -110,7 +110,7 @@ public class Maze implements BuildableSystem {
 
     @Override
     public String getTexture() {
-        return "engine:mapObjects/maze";
+        return "mazes:mapObjects/maze";
     }
 
     @Override
