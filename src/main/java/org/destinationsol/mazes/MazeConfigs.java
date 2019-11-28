@@ -15,41 +15,38 @@
  */
 package org.destinationsol.mazes;
 
-import org.destinationsol.assets.json.Validator;
 import org.destinationsol.game.ConfigurationSystem;
 import org.json.JSONObject;
-import org.destinationsol.assets.Assets;
-import org.destinationsol.assets.json.Json;
 import org.destinationsol.files.HullConfigManager;
 import org.destinationsol.game.item.ItemManager;
-import org.terasology.assets.ResourceUrn;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class MazeConfigs implements ConfigurationSystem {
-    private List<MazeConfig> configs;
+    private List<MazeConfig> configurations;
 
-    @Override
-    public void generateConfigurations(HullConfigManager hullConfigs, ItemManager itemManager) {
-        configs = new ArrayList<>();
-        final Set<ResourceUrn> configUrns = Assets.getAssetHelper().list(Json.class, "[a-zA-Z0-9]*:mazesConfig");
-        for (ResourceUrn configUrn : configUrns) {
-            JSONObject rootNode = Validator.getValidatedJSON(configUrn.toString(), "mazes:schemaMazesConfig");
-            for (String name : rootNode.keySet()) {
-                if (!(rootNode.get(name) instanceof JSONObject))
-                    continue;
-                JSONObject mazeNode = rootNode.getJSONObject(name);
-                String moduleName = configUrn.getModuleName().toString();
-                MazeConfig c = MazeConfig.load(moduleName, name, mazeNode, hullConfigs, itemManager);
-                configs.add(c);
-            }
-
-        }
+    public MazeConfigs() {
+        configurations = new ArrayList<>();
     }
 
-    public List<MazeConfig> getConfigurations() {
-        return configs;
+    @Override
+    public void loadConfiguration(String moduleName, String name, JSONObject mazeNode, HullConfigManager hullConfigManager, ItemManager itemManager) {
+        MazeConfig c = MazeConfig.load(moduleName, name, mazeNode, hullConfigManager, itemManager);
+        configurations.add(c);
+    }
+
+    @Override
+    public String getJSONValidatorLocation() {
+        return "mazes:schemaMazesConfig";
+    }
+
+    @Override
+    public String getConfigurationLocations() {
+        return "[a-zA-Z0-9]*:mazesConfig";
+    }
+
+    List<MazeConfig> getConfigurations() {
+        return configurations;
     }
 }
