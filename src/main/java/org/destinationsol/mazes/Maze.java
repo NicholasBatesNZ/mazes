@@ -104,12 +104,12 @@ public class Maze implements BuildableSystem {
     }
 
     @Override
-    public float getBorder() {
+    public float getMapBorder() {
         return MazeBuilder.BORDER;
     }
 
     @Override
-    public String getTexture() {
+    public String getMapTextureLocation() {
         return "mazes:mapObjects/maze";
     }
 
